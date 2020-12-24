@@ -25,6 +25,10 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Set PlatformIO Core folder
+        if: startsWith(matrix.os, 'windows')
+        env:
+          PLATFORMIO_CORE_DIR: C:/pio
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -33,7 +37,5 @@ jobs:
           platformio platform install file://.
       - name: Build examples
         run: |
-          if [ "$RUNNER_OS" == "Windows" ]; then
-            PLATFORMIO_CORE_DIR: C:/pio
           platformio run -d ${{ matrix.example }}
           pip3 list
