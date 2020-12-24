@@ -45,7 +45,7 @@ class Nordicnrf52Platform(PlatformBase):
                 if os.path.isfile(deprecated_boards_file):
                     with open(deprecated_boards_file) as fp:
                         if board in json.load(fp):
-                            self.packages["framework-mbed"]["version"] = "~6.51504.0"
+                            self.packages["framework-mbed"]["version"] = "https://github.com/valeros/mbed-os.git#platformio-mbed-os-5.15.6"
                 self.packages["toolchain-gccarmnoneeabi"]["version"] = "~1.90201.0"
 
             if "zephyr" in frameworks:
